@@ -520,6 +520,15 @@
     .section-head h2 { margin-bottom: 0; max-width: 710px; }
     .section-head p { max-width: 420px; margin-bottom: 5px; color: #bfc4b9; line-height: 1.65; }
     .service-list { border-top: 1px solid #363b32; }
+      .rate-menu { margin-top: 64px; }
+      .rate-menu h3 { margin-bottom: 8px; font-size: 28px; text-transform: uppercase; }
+      .rate-menu-intro { margin-bottom: 24px; color: #bfc4b9; font-size: 15px; line-height: 1.6; }
+      .rate-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid #363b32; }
+      .rate-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 18px 0; border-bottom: 1px solid #363b32; }
+      .rate-job { font-size: 20px; font-weight: 700; text-transform: uppercase; }
+      .rate-price { margin-left: auto; font-size: 22px; font-weight: 700; white-space: nowrap; }
+      .rate-note { flex-basis: 100%; color: #bfc4b9; font-size: 14px; line-height: 1.55; }
+      .rate-menu-note { margin-top: 18px; color: #bfc4b9; font-size: 13px; line-height: 1.55; }
     .service-row { display: grid; grid-template-columns: 72px 1fr 1fr auto; align-items: center; gap: 30px; padding: 25px 0; border-bottom: 1px solid #363b32; }
     .service-num { color: var(--accent); font: 700 13px/1 "Barlow Condensed", sans-serif; letter-spacing: .08em; }
     .service-row h3 { margin: 0; font-size: 28px; text-transform: uppercase; letter-spacing: .01em; }
@@ -1174,6 +1183,22 @@
           <article class="service-row"><span class="service-num">03</span><h3>Engine & driveline</h3><p>Diagnostics, valve service, clutch work, cooling systems, and mechanical repair.</p><span class="service-tag">Mechanical</span></article>
           <article class="service-row"><span class="service-num">04</span><h3>Suspension & brakes</h3><p>Fork service, setup, component swaps, brake overhauls, and chassis checks.</p><span class="service-tag">Performance</span></article>
           <article class="service-row"><span class="service-num">05</span><h3>Builds & part-outs</h3><p>Project planning, tear-downs, assembly, upgrades, and finding value in every component.</p><span class="service-tag">Custom</span></article>
+        </div>
+        <div class="rate-menu">
+          <h3>Flat-rate menu</h3>
+          <p class="rate-menu-intro">One number per job, so you know the ballpark before you email. Labor prices &mdash; parts extra unless noted.</p>
+          <ul class="rate-list">
+            <li class="rate-row"><span class="rate-job">Diagnostics</span><strong class="rate-price">$80</strong><span class="rate-note">Applied to the repair if you go ahead.</span></li>
+            <li class="rate-row"><span class="rate-job">Deep diagnostics</span><strong class="rate-price">$200</strong><span class="rate-note">Borescope cylinder inspection, compression and leak-down testing, fuel pressure and injector checks, charging system test, and coolant pressure test.</span></li>
+            <li class="rate-row"><span class="rate-job">Oil + filter change</span><strong class="rate-price">$50 + parts</strong></li>
+            <li class="rate-row"><span class="rate-job">Chain + sprockets</span><strong class="rate-price">$100 + parts</strong></li>
+            <li class="rate-row"><span class="rate-job">Brake overhaul &mdash; front</span><strong class="rate-price">$75 + parts</strong></li>
+            <li class="rate-row"><span class="rate-job">Brake overhaul &mdash; rear</span><strong class="rate-price">$50 + parts</strong></li>
+            <li class="rate-row"><span class="rate-job">Fork seals, pair</span><strong class="rate-price">$200 + parts</strong></li>
+            <li class="rate-row"><span class="rate-job">Valve check</span><strong class="rate-price">$400</strong><span class="rate-note">Clearances measured and reported.</span></li>
+            <li class="rate-row"><span class="rate-job">Valve check + adjust</span><strong class="rate-price">$500</strong><span class="rate-note">Shims extra.</span></li>
+          </ul>
+          <p class="rate-menu-note">Tire mounting prices are listed above.</p>
         </div>
       </div>
     </section>
