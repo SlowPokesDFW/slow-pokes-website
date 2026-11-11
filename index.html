@@ -699,6 +699,10 @@
     .shop-hours-row dt { font: 700 13px/1.3 "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: .09em; }
     .shop-hours-row dd { margin: 0; font: 800 21px/1.1 "Barlow Condensed", sans-serif; letter-spacing: .01em; white-space: nowrap; }
     .contact-form { padding: 34px; border: 1px solid #4a5045; background: #11140f; box-shadow: 9px 9px 0 var(--accent); }
+      .parts-wanted { margin-top: 64px; }
+      .parts-wanted-intro { max-width: 680px; margin-bottom: 30px; }
+      .parts-wanted-intro h3 { margin-bottom: 10px; font-size: 30px; text-transform: uppercase; }
+      .parts-wanted-intro p { color: #bfc4b9; font-size: 15px; line-height: 1.6; }
     .contact-form h3 { margin-bottom: 6px; font-size: 31px; text-transform: uppercase; }
     .contact-form > p { margin-bottom: 28px; color: #bfc4b9; font-size: 13px; line-height: 1.55; }
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 14px; }
@@ -1112,6 +1116,49 @@
             </div>
           </article>
         </div>
+      </div>
+      <div class="wrap parts-wanted">
+        <div class="parts-wanted-intro">
+          <h3>Can&rsquo;t find your part?</h3>
+          <p>We part out wrecked bikes every week. If the part you need isn&rsquo;t listed, tell us your bike and the part &mdash; we&rsquo;ll email you when one comes in.</p>
+        </div>
+        <form class="contact-form" id="partsWantedForm">
+          <h3>Parts wanted</h3>
+          <p>Fill this out, then open a prefilled email or copy the request to send another way.</p>
+          <div class="form-grid">
+            <label class="form-field">Year
+              <select id="wantedYear" name="year" required>
+                <option value="">Choose year</option>
+              </select>
+            </label>
+            <label class="form-field">Make
+              <select id="wantedMake" name="make" required>
+                <option value="">Choose make</option>
+                <option>Aprilia</option><option>BMW</option><option>Ducati</option><option>Honda</option><option>Kawasaki</option><option>Suzuki</option><option>Triumph</option><option>Yamaha</option><option>Other / not listed</option>
+              </select>
+            </label>
+            <label class="form-field">Model
+              <input id="wantedModel" name="model" type="text" autocomplete="off" placeholder="Example: GSX-R750" required />
+            </label>
+            <label class="form-field full">Part you need
+              <input id="wantedPart" name="part" type="text" autocomplete="off" placeholder="Example: front brake caliper, left side" required />
+            </label>
+            <label class="form-field">Your name
+              <input id="wantedName" name="name" type="text" autocomplete="name" placeholder="Your name" required />
+            </label>
+            <label class="form-field">Email
+              <input id="wantedEmail" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required />
+            </label>
+            <label class="form-field full">Details (optional)
+              <textarea id="wantedDetails" name="details" placeholder="Condition, side, color, or anything else that helps us match it"></textarea>
+            </label>
+          </div>
+          <div class="form-actions">
+            <a class="button" id="partsWantedEmailLink" href="mailto:info@dfwslowpokes.com">Create email</a>
+            <button class="button secondary" id="copyPartsWanted" type="button">Copy request</button>
+          </div>
+          <p class="form-status" id="partsWantedStatus" aria-live="polite">Nothing sends automatically &mdash; review the message before you send it.</p>
+        </form>
       </div>
     </section>
 
@@ -2208,6 +2255,69 @@
       contactForm.addEventListener("submit", function (event) {
         event.preventDefault();
         contactEmailLink.click();
+      });
+      var wantedForm = document.getElementById("partsWantedForm");
+      var wantedStatus = document.getElementById("partsWantedStatus");
+      var wantedEmailLink = document.getElementById("partsWantedEmailLink");
+      var wantedEmail = document.getElementById("wantedEmail");
+      var wantedYear = document.getElementById("wantedYear");
+      var copyWantedButton = document.getElementById("copyPartsWanted");
+
+      for (var wantedY = 2026; wantedY >= 1990; wantedY--) {
+        var wantedOption = document.createElement("option");
+        wantedOption.value = String(wantedY); wantedOption.textContent = String(wantedY); wantedYear.appendChild(wantedOption);
+      }
+      var olderWantedOption = document.createElement("option");
+      olderWantedOption.value = "Older / unsure";
+      olderWantedOption.textContent = "Older / unsure";
+      wantedYear.appendChild(olderWantedOption);
+
+      function wantedText() {
+        var details = document.getElementById("wantedDetails").value.trim();
+        var text = "Slow Pokes parts wanted request\n\n" +
+          "Name: " + document.getElementById("wantedName").value.trim() + "\n" +
+          "Email: " + wantedEmail.value.trim() + "\n" +
+          "Bike: " + wantedYear.value + " " + document.getElementById("wantedMake").value + " " + document.getElementById("wantedModel").value.trim() + "\n" +
+          "Part I need: " + document.getElementById("wantedPart").value.trim();
+        if (details) text += "\n\nDetails:\n" + details;
+        return text;
+      }
+
+      function validateWantedRequest(action) {
+        if (!wantedForm.reportValidity()) {
+          wantedStatus.textContent = "Complete each field before " + action + " your request.";
+          return false;
+        }
+        return true;
+      }
+
+      function copyWanted() {
+        if (!validateWantedRequest("copying")) return;
+        var text = wantedText();
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            wantedStatus.textContent = "Request copied \u2014 ready to paste into an email.";
+          }).catch(function () {
+            wantedStatus.textContent = "Clipboard access is unavailable. Use Create email instead.";
+          });
+        } else {
+          wantedStatus.textContent = "Clipboard access is unavailable. Use Create email instead.";
+        }
+      }
+
+      wantedEmailLink.addEventListener("click", function (event) {
+        if (!validateWantedRequest("emailing")) {
+          event.preventDefault();
+          return;
+        }
+        wantedEmailLink.href = "mailto:" + shopEmail + "?subject=" + encodeURIComponent("Slow Pokes parts wanted request") + "&body=" + encodeURIComponent(wantedText());
+        wantedStatus.textContent = "Opening your email app \u2014 review the request before sending.";
+      });
+
+      copyWantedButton.addEventListener("click", copyWanted);
+      wantedForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        wantedEmailLink.click();
       });
     }());
   </script>
