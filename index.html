@@ -1243,10 +1243,12 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Wrecked, crashed, project bikes, and bikes with mechanical problems are all considered.</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Any condition considered. A clean title is preferred, but tell us what you have.</span></li>
           </ul>
+          <p class="recent-buys"><strong>Recent bikes we’ve bought:</strong> 2007 Yamaha FZ-07 &middot; 2016 Honda CBR600RR &middot; 2017 Kawasaki Z125 Pro</p>
         </div>
         <form class="bike-offer-form" id="bikeOfferForm">
           <h3>Get a cash offer</h3>
           <p>Send the basics by email. We’ll review the bike and follow up at the address you provide.</p>
+          <p class="form-reply-time"><strong>We reply within 24 hours.</strong></p>
           <div class="form-grid">
             <label class="form-field">Year
               <select id="offerYear" name="year" required>
@@ -1258,6 +1260,9 @@
             </label>
             <label class="form-field">Model
               <input id="offerModel" name="model" type="text" autocomplete="off" placeholder="Example: GSX-R750" required />
+            </label>
+            <label class="form-field">VIN (optional &mdash; helps us identify the exact model)
+              <input id="offerVin" name="vin" type="text" autocomplete="off" maxlength="17" placeholder="17-character VIN" />
             </label>
             <label class="form-field">Mileage
               <input id="offerMileage" name="mileage" type="number" min="0" step="1" inputmode="numeric" placeholder="Example: 18400" required />
@@ -2184,6 +2189,7 @@
         var photoCount = selectedPhotoCount();
         return "Slow Pokes bike offer request\n\n" +
           "Bike: " + document.getElementById("offerYear").value + " " + document.getElementById("offerMake").value.trim() + " " + document.getElementById("offerModel").value.trim() + "\n" +
+          "VIN: " + (document.getElementById("offerVin").value.trim() || "Not provided") + "\n" +
           "Mileage: " + document.getElementById("offerMileage").value.trim() + "\n" +
           "Title status: " + document.getElementById("offerTitle").value + "\n" +
           "Asking price: $" + document.getElementById("offerPrice").value.trim() + "\n" +
