@@ -1361,6 +1361,7 @@
         <form class="contact-form" id="contactForm">
           <h3>Start your request</h3>
           <p id="contactFormIntro">Fill this out, then open a prefilled email or copy the request to send another way.</p>
+          <p class="next-opening" id="nextOpening"><strong>Next service opening:</strong> This week &mdash; send a request and we'll confirm the soonest slot.</p>
           <div class="form-grid">
             <label class="form-field">Name
               <input id="contactName" name="name" type="text" autocomplete="name" placeholder="Your name" required />
@@ -1397,6 +1398,9 @@
                 <option>Electrical</option>
                 <option>Other / not listed</option>
               </select>
+            </label>
+            <label class="form-field full">Preferred drop-off date (optional)
+              <input id="contactDropoff" name="dropoff" type="date" />
             </label>
             <label class="form-field full">Message / what you need
               <textarea id="contactMessage" name="message" placeholder="Describe the part, repair, symptoms, or project goal" required></textarea>
@@ -2247,7 +2251,8 @@
           "Name: " + document.getElementById("contactName").value.trim() + "\n" +
           "Email: " + contactReply.value.trim() + "\n" +
           "Bike: " + contactYear.value + " " + contactMake.value + " " + contactModel.value + "\n" +
-          "Maintenance type: " + contactMaintenance.value + "\n\n" +
+          "Maintenance type: " + contactMaintenance.value + "\n" +
+          "Preferred drop-off: " + (document.getElementById("contactDropoff").value.trim() || "Not specified") + "\n\n" +
           "What I need:\n" + document.getElementById("contactMessage").value.trim();
       }
 
