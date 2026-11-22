@@ -712,6 +712,18 @@
       .parts-wanted-intro { max-width: 680px; margin-bottom: 30px; }
       .parts-wanted-intro h3 { margin-bottom: 10px; font-size: 30px; text-transform: uppercase; }
       .parts-wanted-intro p { color: #bfc4b9; font-size: 15px; line-height: 1.6; }
+    .sold-strip { margin-top: 64px; }
+    .sold-strip[hidden] { display: none; }
+    .sold-strip-head { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+    .sold-strip-head .section-index { margin-bottom: 0; }
+    .sold-strip-head h3 { margin: 0; font-size: 30px; text-transform: uppercase; }
+    .sold-strip-viewport { overflow: hidden; padding: 14px 0; border-top: 1px solid #363b32; border-bottom: 1px solid #363b32; }
+    .sold-strip-track { display: inline-flex; width: max-content; gap: 12px; white-space: nowrap; will-change: transform; animation: sold-strip-scroll 45s linear infinite; }
+    .sold-strip-viewport:hover .sold-strip-track { animation-play-state: paused; }
+    .sold-strip-item { display: inline-flex; align-items: baseline; gap: 10px; padding: 10px 16px; border: 1px solid #3f453a; background: #11140f; color: var(--white); font: 700 16px/1.1 "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: .02em; }
+    .sold-strip-item .sold-date { color: var(--accent); font-size: 13px; white-space: nowrap; }
+    @keyframes sold-strip-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) { .sold-strip-track { animation: none; } }
     .contact-form h3 { margin-bottom: 6px; font-size: 31px; text-transform: uppercase; }
     .contact-form > p { margin-bottom: 28px; color: #bfc4b9; font-size: 13px; line-height: 1.55; }
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 14px; }
@@ -1124,6 +1136,15 @@
               </div>
             </div>
           </article>
+        </div>
+      </div>
+      <div class="wrap sold-strip" id="recentlySoldStrip" hidden>
+        <div class="sold-strip-head">
+          <span class="section-index">Recently sold</span>
+          <h3>Sold in the last 30 days</h3>
+        </div>
+        <div class="sold-strip-viewport">
+          <div class="sold-strip-track" id="recentlySoldTrack"></div>
         </div>
       </div>
       <div class="wrap parts-wanted">
@@ -2147,6 +2168,33 @@
           headline.textContent = "Inventory unavailable";
           sub.textContent = "The current parts list could not be loaded. Please try again later.";
         });
+
+      var RECENTLY_SOLD_URL = "data:application/json;base64,WwogewogICJpdGVtX25vIjogIjI2MyIsCiAgImRlc2NyaXB0aW9uIjogIlRSQU5TTUlTU0lPTiBPVVRQVVQgU0hBRlQiLAogICJkYXRlX3NvbGQiOiAiMjAyNi0xMS0xMSIsCiAgImRhdGVfc29sZF9kaXNwbGF5IjogIk5vdiAxMSIKIH0sCiB7CiAgIml0ZW1fbm8iOiAiMTM3IiwKICAiZGVzY3JpcHRpb24iOiAiU1dJTkdBUk0iLAogICJkYXRlX3NvbGQiOiAiMjAyNi0xMS0wMyIsCiAgImRhdGVfc29sZF9kaXNwbGF5IjogIk5vdiAzIgogfSwKIHsKICAiaXRlbV9ubyI6ICIxNDMiLAogICJkZXNjcmlwdGlvbiI6ICJSRUFSIEFYTEUiLAogICJkYXRlX3NvbGQiOiAiMjAyNi0xMS0wMyIsCiAgImRhdGVfc29sZF9kaXNwbGF5IjogIk5vdiAzIgogfSwKIHsKICAiaXRlbV9ubyI6ICIyMDgiLAogICJkZXNjcmlwdGlvbiI6ICJSRUFSIFdJU0hCT05FIiwKICAiZGF0ZV9zb2xkIjogIjIwMjYtMTEtMDMiLAogICJkYXRlX3NvbGRfZGlzcGxheSI6ICJOb3YgMyIKIH0sCiB7CiAgIml0ZW1fbm8iOiAiMjYyIiwKICAiZGVzY3JpcHRpb24iOiAiU0xJUE9OIiwKICAiZGF0ZV9zb2xkIjogIjIwMjYtMTEtMDIiLAogICJkYXRlX3NvbGRfZGlzcGxheSI6ICJOb3YgMiIKIH0sCiB7CiAgIml0ZW1fbm8iOiAiMjQwIiwKICAiZGVzY3JpcHRpb24iOiAiUkVBUiBDQUxJUEVSIEJSQUNLRVQiLAogICJkYXRlX3NvbGQiOiAiMjAyNi0xMC0yNSIsCiAgImRhdGVfc29sZF9kaXNwbGF5IjogIk9jdCAyNSIKIH0sCiB7CiAgIml0ZW1fbm8iOiAiMjU4IiwKICAiZGVzY3JpcHRpb24iOiAiR0FVR0UgQ0xVU1RFUiBTV0FQIiwKICAiZGF0ZV9zb2xkIjogIjIwMjYtMTAtMjUiLAogICJkYXRlX3NvbGRfZGlzcGxheSI6ICJPY3QgMjUiCiB9LAogewogICJpdGVtX25vIjogIjI1OSIsCiAgImRlc2NyaXB0aW9uIjogIkxIIENPTlRST0wiLAogICJkYXRlX3NvbGQiOiAiMjAyNi0xMC0yNSIsCiAgImRhdGVfc29sZF9kaXNwbGF5IjogIk9jdCAyNSIKIH0sCiB7CiAgIml0ZW1fbm8iOiAiMjYwIiwKICAiZGVzY3JpcHRpb24iOiAiR1lUUiBTTElQT04iLAogICJkYXRlX3NvbGQiOiAiMjAyNi0xMC0yNSIsCiAgImRhdGVfc29sZF9kaXNwbGF5IjogIk9jdCAyNSIKIH0sCiB7CiAgIml0ZW1fbm8iOiAiMjYxIiwKICAiZGVzY3JpcHRpb24iOiAiVElUQU4gMTAwMExCIExJRlQiLAogICJkYXRlX3NvbGQiOiAiMjAyNi0xMC0yNSIsCiAgImRhdGVfc29sZF9kaXNwbGF5IjogIk9jdCAyNSIKIH0KXQ==";
+      fetch(RECENTLY_SOLD_URL)
+        .then(function (response) {
+          if (!response.ok) throw new Error("Recently sold could not be loaded.");
+          return response.json();
+        })
+        .then(function (sold) {
+          var strip = document.getElementById("recentlySoldStrip");
+          var track = document.getElementById("recentlySoldTrack");
+          if (!strip || !track || !sold.length) return;
+          sold.forEach(function (item) {
+            var chip = document.createElement("span");
+            chip.className = "sold-strip-item";
+            var name = document.createElement("span");
+            name.textContent = item.description;
+            var when = document.createElement("span");
+            when.className = "sold-date";
+            when.textContent = "sold " + item.date_sold_display;
+            chip.appendChild(name);
+            chip.appendChild(when);
+            track.appendChild(chip);
+          });
+          track.innerHTML += track.innerHTML;
+          strip.hidden = false;
+        })
+        .catch(function () { /* strip stays hidden when no sold data loads */ });
 
       var shopEmail = "info@dfwslowpokes.com";
       var bikeOfferForm = document.getElementById("bikeOfferForm");
