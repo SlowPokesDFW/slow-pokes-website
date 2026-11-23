@@ -533,6 +533,8 @@
       .rate-price { margin-left: auto; font-size: 22px; font-weight: 700; white-space: nowrap; }
       .rate-note { flex-basis: 100%; color: #bfc4b9; font-size: 14px; line-height: 1.55; }
       .rate-menu-note { margin-top: 18px; color: #bfc4b9; font-size: 13px; line-height: 1.55; }
+      .rate-menu-link { margin-top: 64px; }
+      .rate-menu-link p { margin-bottom: 18px; color: #bfc4b9; font-size: 15px; line-height: 1.6; }
     .service-row { display: grid; grid-template-columns: 72px 1fr 1fr auto; align-items: center; gap: 30px; padding: 25px 0; border-bottom: 1px solid #363b32; }
     .service-num { color: var(--accent); font: 700 13px/1 "Barlow Condensed", sans-serif; letter-spacing: .08em; }
     .service-row h3 { margin: 0; font-size: 28px; text-transform: uppercase; letter-spacing: .01em; }
@@ -971,11 +973,12 @@
         <a class="nav-brand" href="#home" aria-label="Slow Pokes home"><img class="brand-logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjQuNjQgNDAiPjx0aXRsZT5TbG93IFBva2VzPC90aXRsZT48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0LjMsMCkgc2tld1goLTEyKSI+PHBhdGggZD0iTTMgNGgzMGw0IDR2MTBIMTdsLTQgNGgyMGw0IDR2MTBIM1YyNmgyMGw0LTRIN2wtNC00VjRaIiBmaWxsPSIjMmIyYjJiIi8+PHBhdGggZD0iTTMgNGg3djMySDN6IiBmaWxsPSIjOGE0ZmZmIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQ1LjQ1LDI5LjIwKSBzY2FsZSgwLjAyMjcyLC0wLjAyMjcyKSIgZmlsbD0iIzExMTExMSI+PHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwwKSIgZD0iTTI3NSAtMTJRMTk5IC0xMiAxNDguMCAxNS4wUTk3IDQyIDcxLjAgOTguNVE0NSAxNTUgNDIgMjQ1TDE5NSAyNjhRMTk2IDIxNiAyMDQuNSAxODQuMFEyMTMgMTUyIDIyOC41IDEzOC4wUTI0NCAxMjQgMjY2IDEyNFEyOTQgMTI0IDMwMi41IDE0My4wUTMxMSAxNjIgMzExIDE4M1EzMTEgMjMzIDI4Ny4wIDI2Ny41UTI2MyAzMDIgMjIyIDMzN0wxNTIgMzk4UTEwNiA0MzcgNzQuNSA0ODYuNVE0MyA1MzYgNDMgNjA5UTQzIDcxMiAxMDQuMCA3NjYuNVExNjUgODIxIDI3MCA4MjFRMzM1IDgyMSAzNzQuNSA3OTkuMFE0MTQgNzc3IDQzNC41IDc0MS41UTQ1NSA3MDYgNDYyLjUgNjY2LjVRNDcwIDYyNyA0NzEgNTkxTDMxNyA1NzJRMzE2IDYwOCAzMTIuNSA2MzQuNVEzMDkgNjYxIDI5OC4wIDY3NS41UTI4NyA2OTAgMjY0IDY5MFEyMzkgNjkwIDIyNy41IDY2OS4wUTIxNiA2NDggMjE2IDYyN1EyMTYgNTgyIDIzNy41IDU1My41UTI1OSA1MjUgMjk0IDQ5NEwzNjEgNDM1UTQxNCAzOTAgNDUwLjUgMzMzLjBRNDg3IDI3NiA0ODcgMTkyUTQ4NyAxMzUgNDYxLjAgODguNVE0MzUgNDIgMzg3LjUgMTUuMFEzNDAgLTEyIDI3NSAtMTJaIi8+PHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTE0LDApIiBkPSJNNjAgMFY4MTBIMjM5VjEyMUg0MjVWMFoiLz48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSg5NTcsMCkiIGQ9Ik0yOTIgLTEyUTIwMSAtMTIgMTQ4LjAgMjAuMFE5NSA1MiA3Mi4wIDExMi4wUTQ5IDE3MiA0OSAyNTVWNTU2UTQ5IDY0MCA3Mi4wIDY5OS4wUTk1IDc1OCAxNDguMCA3ODkuNVEyMDEgODIxIDI5MiA4MjFRMzg0IDgyMSA0MzcuNSA3ODkuNVE0OTEgNzU4IDUxNC4wIDY5OS4wUTUzNyA2NDAgNTM3IDU1NlYyNTVRNTM3IDE3MiA1MTQuMCAxMTIuMFE0OTEgNTIgNDM3LjUgMjAuMFEzODQgLTEyIDI5MiAtMTJaTTI5MiAxMTVRMzIwIDExNSAzMzMuMCAxMjkuMFEzNDYgMTQzIDM1MC4wIDE2NS4wUTM1NCAxODcgMzU0IDIxMFY2MDBRMzU0IDYyNCAzNTAuMCA2NDUuNVEzNDYgNjY3IDMzMy4wIDY4MS4wUTMyMCA2OTUgMjkyIDY5NVEyNjYgNjk1IDI1My4wIDY4MS4wUTI0MCA2NjcgMjM2LjAgNjQ1LjVRMjMyIDYyNCAyMzIgNjAwVjIxMFEyMzIgMTg3IDIzNS41IDE2NS4wUTIzOSAxNDMgMjUxLjUgMTI5LjBRMjY0IDExNSAyOTIgMTE1WiIvPjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE1NDMsMCkiIGQ9Ik0xMjUgMCAyNyA4MTBIMTc5TDIyNyAzMzhMMjg4IDgwOUg0MDdMNDcxIDM0MUw1MjAgODEwSDY3MEw1NzMgMEg0MTdMMzQ4IDQ4OUwyODMgMFoiLz48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyNDk2LDApIiBkPSJNNjAgMFY4MTBIMzMyUTQwNSA4MTAgNDUyLjAgNzgyLjVRNDk5IDc1NSA1MjIuMCA3MDIuNVE1NDUgNjUwIDU0NSA1NzVRNTQ1IDQ4MSA1MTQuMCA0MzEuNVE0ODMgMzgyIDQzMC4wIDM2My4wUTM3NyAzNDQgMzExIDM0NEgyMzlWMFpNMjM5IDQ2OUgyOTlRMzMyIDQ2OSAzNDkuMCA0ODEuMFEzNjYgNDkzIDM3MS41IDUxNy4wUTM3NyA1NDEgMzc3IDU3OFEzNzcgNjA5IDM3Mi41IDYzMi41UTM2OCA2NTYgMzUxLjAgNjcwLjBRMzM0IDY4NCAyOTggNjg0SDIzOVoiLz48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMDY3LDApIiBkPSJNMjkyIC0xMlEyMDEgLTEyIDE0OC4wIDIwLjBROTUgNTIgNzIuMCAxMTIuMFE0OSAxNzIgNDkgMjU1VjU1NlE0OSA2NDAgNzIuMCA2OTkuMFE5NSA3NTggMTQ4LjAgNzg5LjVRMjAxIDgyMSAyOTIgODIxUTM4NCA4MjEgNDM3LjUgNzg5LjVRNDkxIDc1OCA1MTQuMCA2OTkuMFE1MzcgNjQwIDUzNyA1NTZWMjU1UTUzNyAxNzIgNTE0LjAgMTEyLjBRNDkxIDUyIDQzNy41IDIwLjBRMzg0IC0xMiAyOTIgLTEyWk0yOTIgMTE1UTMyMCAxMTUgMzMzLjAgMTI5LjBRMzQ2IDE0MyAzNTAuMCAxNjUuMFEzNTQgMTg3IDM1NCAyMTBWNjAwUTM1NCA2MjQgMzUwLjAgNjQ1LjVRMzQ2IDY2NyAzMzMuMCA2ODEuMFEzMjAgNjk1IDI5MiA2OTVRMjY2IDY5NSAyNTMuMCA2ODEuMFEyNDAgNjY3IDIzNi4wIDY0NS41UTIzMiA2MjQgMjMyIDYwMFYyMTBRMjMyIDE4NyAyMzUuNSAxNjUuMFEyMzkgMTQzIDI1MS41IDEyOS4wUTI2NCAxMTUgMjkyIDExNVoiLz48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNjUzLDApIiBkPSJNNjAgMFY4MTBIMjM5VjQ3OUwzNzUgODEwSDU1MEw0MDAgNDQ0TDU1NyAwSDM3NUwyNTggMzU4TDIzOSAzMjZWMFoiLz48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MjIwLDApIiBkPSJNNjAgMFY4MTBINDI0VjY4OEgyMzlWNDg3SDM4MFYzNjNIMjM5VjEyMUg0MjZWMFoiLz48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0NjY3LDApIiBkPSJNMjc1IC0xMlExOTkgLTEyIDE0OC4wIDE1LjBROTcgNDIgNzEuMCA5OC41UTQ1IDE1NSA0MiAyNDVMMTk1IDI2OFExOTYgMjE2IDIwNC41IDE4NC4wUTIxMyAxNTIgMjI4LjUgMTM4LjBRMjQ0IDEyNCAyNjYgMTI0UTI5NCAxMjQgMzAyLjUgMTQzLjBRMzExIDE2MiAzMTEgMTgzUTMxMSAyMzMgMjg3LjAgMjY3LjVRMjYzIDMwMiAyMjIgMzM3TDE1MiAzOThRMTA2IDQzNyA3NC41IDQ4Ni41UTQzIDUzNiA0MyA2MDlRNDMgNzEyIDEwNC4wIDc2Ni41UTE2NSA4MjEgMjcwIDgyMVEzMzUgODIxIDM3NC41IDc5OS4wUTQxNCA3NzcgNDM0LjUgNzQxLjVRNDU1IDcwNiA0NjIuNSA2NjYuNVE0NzAgNjI3IDQ3MSA1OTFMMzE3IDU3MlEzMTYgNjA4IDMxMi41IDYzNC41UTMwOSA2NjEgMjk4LjAgNjc1LjVRMjg3IDY5MCAyNjQgNjkwUTIzOSA2OTAgMjI3LjUgNjY5LjBRMjE2IDY0OCAyMTYgNjI3UTIxNiA1ODIgMjM3LjUgNTUzLjVRMjU5IDUyNSAyOTQgNDk0TDM2MSA0MzVRNDE0IDM5MCA0NTAuNSAzMzMuMFE0ODcgMjc2IDQ4NyAxOTJRNDg3IDEzNSA0NjEuMCA4OC41UTQzNSA0MiAzODcuNSAxNS4wUTM0MCAtMTIgMjc1IC0xMloiLz48L2c+PC9zdmc+" alt="Slow Pokes" /></a>
         <a href="#home">Home</a>
         <a href="#parts">Parts</a>
+        <a href="services.html">Services</a>
         <details class="nav-menu">
           <summary>Explore</summary>
           <div class="nav-menu-panel">
             <a href="#tires">Tires</a>
-            <a href="#services">Service</a>
+            <a href="#services">Workshop</a>
             <a href="#mobile-service">Mobile Service</a>
             <a href="#sell-bike">Sell your bike</a>
             <a href="#contact">Contact</a>
@@ -1225,21 +1228,9 @@
           <article class="service-row"><span class="service-num">04</span><h3>Suspension & brakes</h3><p>Fork service, setup, component swaps, brake overhauls, and chassis checks.</p><span class="service-tag">Performance</span></article>
           <article class="service-row"><span class="service-num">05</span><h3>Builds & part-outs</h3><p>Project planning, tear-downs, assembly, upgrades, and finding value in every component.</p><span class="service-tag">Custom</span></article>
         </div>
-        <div class="rate-menu">
-          <h3>Flat-rate menu</h3>
-          <p class="rate-menu-intro">One number per job, so you know the ballpark before you email. Labor prices &mdash; parts extra unless noted.</p>
-          <ul class="rate-list">
-            <li class="rate-row"><span class="rate-job">Diagnostics</span><strong class="rate-price">$80</strong><span class="rate-note">Applied to the repair if you go ahead.</span></li>
-            <li class="rate-row"><span class="rate-job">Deep diagnostics</span><strong class="rate-price">$200</strong><span class="rate-note">Borescope cylinder inspection, compression and leak-down testing, fuel pressure and injector checks, charging system test, and coolant pressure test.</span></li>
-            <li class="rate-row"><span class="rate-job">Oil + filter change</span><strong class="rate-price">$50 + parts</strong></li>
-            <li class="rate-row"><span class="rate-job">Chain + sprockets</span><strong class="rate-price">$100 + parts</strong></li>
-            <li class="rate-row"><span class="rate-job">Brake overhaul &mdash; front</span><strong class="rate-price">$75 + parts</strong></li>
-            <li class="rate-row"><span class="rate-job">Brake overhaul &mdash; rear</span><strong class="rate-price">$50 + parts</strong></li>
-            <li class="rate-row"><span class="rate-job">Fork seals, pair</span><strong class="rate-price">$200 + parts</strong></li>
-            <li class="rate-row"><span class="rate-job">Valve check</span><strong class="rate-price">$400</strong><span class="rate-note">Clearances measured and reported.</span></li>
-            <li class="rate-row"><span class="rate-job">Valve check + adjust</span><strong class="rate-price">$500</strong><span class="rate-note">Shims extra.</span></li>
-          </ul>
-          <p class="rate-menu-note">Tire mounting prices are listed above.</p>
+        <div class="rate-menu-link">
+          <p>One number per job &mdash; see the full flat-rate menu on the service page, including tire mounting prices.</p>
+          <a class="button" href="services.html">View flat-rate menu</a>
         </div>
       </div>
     </section>
