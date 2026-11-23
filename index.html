@@ -733,8 +733,8 @@
     .new-week-head { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
     .new-week-head h3 { margin: 0; }
     .new-week-head span { color: #bfc4b9; font-size: 11px; line-height: 1.4; }
-    .new-week-row { display: flex; gap: 12px; margin: 0; padding: 0 0 6px; list-style: none; overflow-x: auto; }
-    .new-week-row .inventory-item { flex: 0 0 272px; min-width: 0; }
+    .new-week-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+    .new-week-row .inventory-item { min-width: 0; }
     .new-week-row .inventory-card-copy { padding: 14px; }
     .contact-form h3 { margin-bottom: 6px; font-size: 31px; text-transform: uppercase; }
     .contact-form > p { margin-bottom: 28px; color: #bfc4b9; font-size: 13px; line-height: 1.55; }
@@ -864,6 +864,7 @@
       body.parts-page .fitment-intro { grid-template-columns: 1fr; gap: 18px; }
       body.parts-page .fitment-intro .section-index { grid-column: auto; margin-bottom: 0; }
       .inventory-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .new-week-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .part-detail-layout { grid-template-columns: minmax(0, 1fr); }
       .section-head { display: block; }
       .section-head p { margin-top: 20px; }
